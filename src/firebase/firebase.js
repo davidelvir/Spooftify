@@ -17,5 +17,6 @@ class Firebase {
       this.db = app.database();
     }
   }
-   
-  export default Firebase;
+  const firebase = new Firebase();
+  export const db = firebase.db;
+  export default firebase;

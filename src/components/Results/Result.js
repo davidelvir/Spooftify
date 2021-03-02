@@ -10,9 +10,13 @@ const Result = (props) => {
           <p>{props.info.name}</p>
           <p>{props.info.album}</p>
           <p>{millisToMinutesAndSeconds(Number(props.info.duration))}</p>
-          <div className={props.myLibrary.some(s => s.id === props.info.id) ? "plus-minus-toggle":"plus-minus-toggle collapsed"}
-               onClick={props.myLibrary.some(s => s.id === props.info.id) ? ()=>props.onSongRemoved(props.info) : ()=>props.onSongAdded(props.info)}
-          ></div>
+          <div className={props.myLibrary.some(s => s.id === props.info.id) ? "plus-minus-toggle" : "plus-minus-toggle collapsed"}
+    onClick={props.myLibrary.some(s => s.id === props.info.id) ? () => props.onSongRemoved({
+        song: props.info,
+        user: props.user,
+        library: props.myLibrary
+    }) : () => props.onSongAdded({song: props.info, user: props.user, library: props.myLibrary})}
+    />
       </div>
     );
   }

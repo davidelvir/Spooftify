@@ -14,14 +14,12 @@ const getParamValues = (url) => {
 };
 
 const RedirectPage = (props) => {
-    console.log('hola');
-    const { setExpiryTime, history, location } = props;
+    const { history, location } = props;
     useEffect(()=> {
         const access_token = getParamValues(location.hash);
         const expiryTime = new Date().getTime() + access_token.expires_in * 1000;
         access_token.expires_in = expiryTime;
         props.onAuthTokenReceived(access_token);
-        console.log(access_token);
         props.setExpiryTime(expiryTime);
         history.push('/dashboard');
     });

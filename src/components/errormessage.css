@@ -1,0 +1,7 @@
+.error-container {
+    background-color: #a20b0b;
+    height: 5rem;
+    justify-content: center;
+    display: flex;
+    color: white;
+}

@@ -32,16 +32,16 @@ const reducer = (
             localStorage.removeItem("token");
             localStorage.removeItem("expires_in");
             localStorage.removeItem("token_type");
-            console.log('logout');
+            localStorage.removeItem("user");
             return { ...state, isAuthUser: false, token: '', expires_in: '', token_type: '' };
         case GOT_NEW_RELEASES:
             return { ...state, releases: action.payload };
         case GOT_USER:
-            return { ...state, user: action.payload };
+            return { ...state, user: action.payload.user, myLibrary: action.payload.library ? action.payload.library : [] };
         case GOT_SONG:
-            return { ...state, myLibrary: state.myLibrary.concat([action.payload]) };
+            return { ...state, myLibrary: action.payload };
         case REMOVED_SONG:
-            return { ...state, myLibrary: state.myLibrary.filter(s => s.id !== action.payload.id) };
+            return { ...state, myLibrary: action.payload };
         case GOT_RESULTS:
             return { ...state, searchResults: action.tracks };
         default:

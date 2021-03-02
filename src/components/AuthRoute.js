@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route } from "react-router";
 
 const AuthRoute = props => {
-    const { isAuthUser, type, isValidSession, location } = props;
+    const { isAuthUser, type, location } = props;
     const { state } = location;
     const sessionExpired = state && state.session_expired;
     if (type === "guest" && isAuthUser && !sessionExpired) return <Redirect to="/dashboard" />;

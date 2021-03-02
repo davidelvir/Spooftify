@@ -52,7 +52,7 @@ export const apiSuccess = ({ response }) => ({
     payload: response
 });
 
-export const apiError = ({ error }) => ({
+export const apiError = (error) => ({
     type: API_ERROR,
     payload: error
 });

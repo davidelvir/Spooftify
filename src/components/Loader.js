@@ -1,6 +1,20 @@
-import { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import './loader.css';
 const Loader = (props) => {
-    return (<div>hola</div>);
+    return (props.isLoading ? (<div className="loader">
+        <div className="lds-default">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>):null);
 };
 export default Loader;

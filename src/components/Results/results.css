@@ -52,6 +52,11 @@
 }
 @media screen and (max-width: 480px) {
     .result {
-        padding: 0 15px;
+        padding: 20px 15px;
+        flex-direction: column;
+    }
+    .result p {
+        width: 100%;
+        text-align: center;
     }
 }

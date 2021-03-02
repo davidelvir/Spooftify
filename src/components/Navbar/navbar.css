@@ -24,6 +24,22 @@
     padding: 10px 20px;
     color: white;
 }
+.logout-btn {
+    margin-right: 20px;
+    background-color: #a20b0b;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+}
+.mobile-search {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    background-color: #F2B705;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    display: none;
+}
 .zoom {
     transition-duration: 0.5s;
     cursor: pointer;
@@ -54,7 +70,7 @@
     }
     .my-library {
         display: block;
-        margin-bottom: 20px;
+        margin: 20px 0;
     }
     .w1-3 {
         width: 100%;
@@ -64,5 +80,11 @@
     }
     .flex {
         justify-content: center;
+    }
+    .mobile-search {
+        display: block;
+    }
+    .logout-btn, .mobile-search {
+        margin-right: 0;
     }
 }

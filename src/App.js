@@ -3,6 +3,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import RedirectPage from './components/RedirectPage';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import MyLibrary from "./components/MyLibrary/MyLibrary";
 import AuthRoute from "./components/AuthRoute";
 import {Provider, connect} from "react-redux";
 import { applyMiddleware } from "redux";
@@ -67,6 +68,17 @@ function App(props) {
                             type="private"
                             render={(props) => (
                                 <Dashboard
+                                    isValidSession={isValidSession}
+                                    setExpiryTime={setExpiryTime}
+                                    {...props}
+                                />
+                            )}
+                        />
+                        <AuthRoute
+                            path="/my-library"
+                            type="private"
+                            render={(props) => (
+                                <MyLibrary
                                     isValidSession={isValidSession}
                                     setExpiryTime={setExpiryTime}
                                     {...props}

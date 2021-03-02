@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import logo from '../../logo.svg';
-import logoutIcon from '../../assets/logout.png';
 import './navbar.css';
 import {LOGOUT} from '../../actions/auth';
-import {GOT_RESULTS} from "../../actions/api";
+import {GOT_RESULTS, apiError} from "../../actions/api";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { searchResult } from "../../actions/search";
@@ -14,22 +13,23 @@ const Navbar = (props) => {
         document.getElementById('song-search').addEventListener('keyup', (e) => {
             if (e.keyCode === 13) {
                 e.preventDefault();
-                searchResult(e.target.value, props.authToken, props.onResultsRequest);
+                if (e.target.value) searchResult(e.target.value, props.authToken, props.onResultsRequest, props.onErrorHappened);
             }
         });
     },[]);
     return (
       <div className="Navbar flex">
         <div className="nav-user flex w1-3">
-            <img className="user-img" height="45" width="45" src={props.user && props.user.images ? props.user.images[0].url : logo}/>
+            <img className="user-img" height="45" width="45" alt="user" src={props.user && props.user.images ? props.user.images[0].url : logo}/>
             <div>{props.user ? props.user.display_name : ''}</div>
         </div>
         <input id="song-search" placeholder="Press enter to search for a song" className="search w1-3" type="text"
                value={inputSate[0].searchTerm} onChange={ event => { inputSate[1](prevState => ({ searchTerm: event.target.value })) } }/>
+         <div onClick={()=> {searchResult(inputSate[0].searchTerm, props.authToken, props.onResultsRequest, props.onErrorHappened)}} className="mobile-search">Search</div>
         <div className="flex w1-3 left-btns">
             <Link className="my-library zoom" to="/my-library">My Library</Link>
-            <div className="zoom" onClick={props.onLogOutRequest}>
-                <img height="25" width="25" src={logoutIcon}/>
+            <div className="logout-btn zoom" onClick={props.onLogOutRequest}>
+                Logout
             </div>
         </div>
       </div>
@@ -42,7 +42,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogOutRequest: () => dispatch({ type: LOGOUT }),
-        onResultsRequest: (tracks) => dispatch({ type: GOT_RESULTS, tracks: tracks })
+        onResultsRequest: (tracks) => dispatch({ type: GOT_RESULTS, tracks: tracks }),
+        onErrorHappened: (error) => dispatch(apiError(error))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

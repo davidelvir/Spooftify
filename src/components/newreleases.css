@@ -6,7 +6,6 @@
 .releases-container {
     display: flex;
     width: 100%;
-    justify-content: center;
     position: absolute;
     left: 0;
     transition: 0.9s;
@@ -30,4 +29,7 @@
 }
 .hide {
     display: none;
+}
+.nothing-to-show {
+    margin-top: 40px;
 }

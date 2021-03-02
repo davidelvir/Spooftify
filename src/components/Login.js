@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import './login.css'
 const {
     REACT_APP_SPOTIFY_CLIENT_ID,
     REACT_APP_AUTHORIZE_URL,
@@ -14,7 +14,7 @@ const Login = (props) => {
     return (
       <div className="Login">
           <h1>Spooftify</h1>
-          <button onClick={handleLogin}>Login to spotify</button>
+          <div className="login-btn" onClick={handleLogin}>Login with spotify</div>
       </div>
     );
   }

@@ -13,7 +13,14 @@ const Navbar = (props) => {
         document.getElementById('song-search').addEventListener('keyup', (e) => {
             if (e.keyCode === 13) {
                 e.preventDefault();
-                if (e.target.value) searchResult(e.target.value, props.authToken, props.onResultsRequest, props.onErrorHappened);
+                if (e.target.value) {
+                    searchResult(e.target.value, props.authToken, props.onResultsRequest, props.onErrorHappened);
+                    window.scrollTo({
+                        top: document.getElementById("results").getBoundingClientRect().top,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     },[]);
@@ -25,7 +32,11 @@ const Navbar = (props) => {
         </div>
         <input id="song-search" placeholder="Press enter to search for a song" className="search w1-3" type="text"
                value={inputSate[0].searchTerm} onChange={ event => { inputSate[1](prevState => ({ searchTerm: event.target.value })) } }/>
-         <div onClick={()=> {searchResult(inputSate[0].searchTerm, props.authToken, props.onResultsRequest, props.onErrorHappened)}} className="mobile-search">Search</div>
+         <div onClick={()=> {searchResult(inputSate[0].searchTerm, props.authToken, props.onResultsRequest, props.onErrorHappened); window.scrollTo({
+             top: document.getElementById("results").getBoundingClientRect().top,
+             left: 0,
+             behavior: 'smooth'
+         });}} className="mobile-search">Search</div>
         <div className="flex w1-3 left-btns">
             <Link className="my-library zoom" to="/my-library">My Library</Link>
             <div className="logout-btn zoom" onClick={props.onLogOutRequest}>
